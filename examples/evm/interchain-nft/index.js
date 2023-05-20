@@ -4,13 +4,13 @@ const {
     utils: { deployContract },
 } = require('@axelar-network/axelar-local-dev');
 
-const ExecutableSample = rootRequire('./artifacts/examples/evm/call-contract/ExecutableSample.sol/ExecutableSample.json');
+const InterchainNFT = rootRequire('./artifacts/examples/evm/interchain-nft/InterchainNFT.sol/InterchainNFT.json');
 
 async function deploy(chain, wallet) {
-    console.log(`Deploying ExecutableSample for ${chain.name}.`);
-    chain.contract = await deployContract(wallet, ExecutableSample, [chain.gateway, chain.gasService]);
+    console.log(`Deploying InterchainNFT for ${chain.name}.`);
+    chain.contract = await deployContract(wallet, InterchainNFT, [chain.gateway, chain.gasService]);
     chain.wallet = wallet;
-    console.log(`Deployed ExecutableSample for ${chain.name} at ${chain.contract.address}.`);
+    console.log(`Deployed InterchainNFT for ${chain.name} at ${chain.contract.address}.`);
 }
 
 async function execute(chains, wallet, options) {

@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
 
-pragma solidity 0.8.19;
+pragma solidity ^0.8.5;
 
 import { AxelarExecutable } from '@axelar-network/axelar-gmp-sdk-solidity/contracts/executable/AxelarExecutable.sol';
 import { IAxelarGateway } from '@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IAxelarGateway.sol';
@@ -22,6 +22,7 @@ contract InterchainNFT is AxelarExecutable, ERC721, Ownable {
 
     constructor(address gateway_, address gasReceiver_) AxelarExecutable(gateway_) ERC721('InteropNFT', 'INFT') {
         gasService = IAxelarGasService(gasReceiver_);
+        safeMint(msg.sender); // token id zero, minting an NFT
     }
 
     function safeMint(address to) public onlyOwner {
